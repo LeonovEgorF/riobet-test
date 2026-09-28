@@ -21,7 +21,7 @@
     <header class="container_header">
         <div class="container wrapper_content">
             <a class="logo" href="#top" aria-label="Riobet — на главную">
-                <img src="img/logo.svg" width="175" height="56" alt="Риобет" fetchpriority="high"/>
+                <img src="img/logo.svg" width="175" height="56" alt="Риобет" fetchpriority="high">
             </a>
             <button class="burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Открыть меню">
                 <span class="burger_box" aria-hidden="true"></span>
@@ -62,10 +62,12 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="container_offer" id="top" aria-label="Приветственный бонус">
+    <main id="top">
+        <h1 class="visually-hidden">Обзор Риобет</h1>
+        <section class="container_offer" aria-label="Приветственный бонус">
             <div class="container">
                 <div class="container_offer_box">
+                    <button class="container_offer_close" type="button" aria-label="Закрыть">×</button>
                     <p class="container_offer_kicker">Приветственный бонус</p>
                     <p class="container_offer_text">100% на первый депозит и 150 фриспинов</p>
                     <div class="container_offer_row">
@@ -79,31 +81,31 @@
             </div>
         </section>
 
-        <section class="container_slider" aria-label="Акции казино">
+        <section class="container_slider" aria-roledescription="carousel" aria-label="Акции казино">
             <div class="container">
                 <div class="content_panel" data-slider>
                     <div class="wrapper_slider">
                         <div class="wrapper_slider_viewport">
-                            <ul class="wrapper_slider_track">
-                                <li class="item_slide" aria-roledescription="slide" aria-label="1 из 3">
+                            <div class="wrapper_slider_track">
+                                <div class="item_slide" role="group" aria-roledescription="slide" aria-label="1 из 3">
                                     <img class="item_slide_img" src="img/banner-live.webp" width="1440" height="360" alt="Играй в прямом эфире" fetchpriority="high" decoding="async" srcset="img/banner-live-960.webp 960w, img/banner-live.webp 1440w" sizes="100vw">
                                     <span class="item_slide_cta">
                                         <button class="btn btn_green" type="button" data-modal="play-modal">Играть</button>
                                     </span>
-                                </li>
-                                <li class="item_slide" aria-roledescription="slide" aria-label="2 из 3">
-                                    <img class="item_slide_img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="img/banner-welcome.webp" width="1440" height="360" alt="Приветственный пакет Riobet: 100% к депозиту и 150 фриспинов" decoding="async" data-srcset="img/banner-welcome-960.webp 960w, img/banner-welcome.webp 1440w" sizes="100vw">
+                                </div>
+                                <div class="item_slide" role="group" aria-roledescription="slide" aria-label="2 из 3" inert>
+                                    <img class="item_slide_img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="img/banner-welcome.webp" width="1440" height="360" alt="Приветственный пакет Riobet: 100% к депозиту и 150 фриспинов" decoding="async" data-srcset="img/banner-welcome-960.webp 960w, img/banner-welcome.webp 1440w" data-sizes="100vw">
                                     <span class="item_slide_cta">
                                         <button class="btn btn_green" type="button" data-modal="play-modal">Играть</button>
                                     </span>
-                                </li>
-                                <li class="item_slide" aria-roledescription="slide" aria-label="3 из 3">
-                                    <img class="item_slide_img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="img/banner-drops.webp" width="1440" height="360" alt="Турнир Drops &amp; Wins с призовым фондом в Riobet" decoding="async" data-srcset="img/banner-drops-960.webp 960w, img/banner-drops.webp 1440w" sizes="100vw">
+                                </div>
+                                <div class="item_slide" role="group" aria-roledescription="slide" aria-label="3 из 3" inert>
+                                    <img class="item_slide_img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="img/banner-drops.webp" width="1440" height="360" alt="Турнир Drops &amp; Wins с призовым фондом в Riobet" decoding="async" data-srcset="img/banner-drops-960.webp 960w, img/banner-drops.webp 1440w" data-sizes="100vw">
                                     <span class="item_slide_cta">
                                         <button class="btn btn_green" type="button" data-modal="play-modal">Играть</button>
                                     </span>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
                         <button class="wrapper_slider_arrow wrapper_slider_arrow_prev" type="button" aria-label="Предыдущий слайд">&#8249;</button>
                         <button class="wrapper_slider_arrow wrapper_slider_arrow_next" type="button" aria-label="Следующий слайд">&#8250;</button>
@@ -458,7 +460,7 @@
                                          data-src="img/slots/billyonaire.webp" width="390" height="260" decoding="async"
                                          alt="Billyonaire — Amatic"
                                          data-srcset="img/slots/billyonaire-240.webp 240w, img/slots/billyonaire.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -478,7 +480,7 @@
                                          data-src="img/slots/book-of-aztec.webp" width="390" height="260"
                                          decoding="async" alt="Book of Aztec — Amatic"
                                          data-srcset="img/slots/book-of-aztec-240.webp 240w, img/slots/book-of-aztec.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw"><span
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw"><span
                                         class="item_game_play" aria-hidden="true">
                                     <img src="img/icons/play.svg" width="20" height="22" alt="">
                                 </span>
@@ -498,7 +500,7 @@
                                          data-src="img/slots/hot-fruits-100.webp" width="390" height="260"
                                          decoding="async" alt="Hot Fruits 100 — Amatic"
                                          data-srcset="img/slots/hot-fruits-100-240.webp 240w, img/slots/hot-fruits-100.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -518,7 +520,7 @@
                                          data-src="img/slots/razor-shark.webp" width="390" height="260" decoding="async"
                                          alt="Razor Shark — Push Gaming"
                                          data-srcset="img/slots/razor-shark-240.webp 240w, img/slots/razor-shark.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -538,7 +540,7 @@
                                          data-src="img/slots/book-of-dead.webp" width="390" height="260"
                                          decoding="async" alt="Book of Dead — Play’n GO"
                                          data-srcset="img/slots/book-of-dead-240.webp 240w, img/slots/book-of-dead.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -558,7 +560,7 @@
                                          data-src="img/live/immersive-evo.webp" width="390" height="260"
                                          decoding="async" alt="Immersive Roulette — Evolution"
                                          data-srcset="img/live/immersive-evo-240.webp 240w, img/live/immersive-evo.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -578,7 +580,7 @@
                                          data-src="img/slots/lucky-streak-3.webp" width="390" height="260"
                                          decoding="async" alt="Lucky Streak 3 — Endorphina"
                                          data-srcset="img/slots/lucky-streak-3-240.webp 240w, img/slots/lucky-streak-3.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -598,7 +600,7 @@
                                          data-src="img/slots/resident.webp" width="390" height="260" decoding="async"
                                          alt="Resident — Igrosoft"
                                          data-srcset="img/slots/resident-240.webp 240w, img/slots/resident.webp 390w"
-                                         sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
+                                         data-sizes="(min-width: 900px) 25vw, (min-width: 600px) 33vw, 50vw">
                                     <span class="item_game_play" aria-hidden="true">
                                         <img src="img/icons/play.svg" width="20" height="22" alt="">
                                     </span>
@@ -622,57 +624,54 @@
             </div>
         </section>
 
-        <section class="container_jackpot" aria-labelledby="jackpot-title">
+        <section class="container_jackpot" aria-roledescription="carousel" aria-labelledby="jackpot-title">
             <div class="container">
                 <div class="container_jackpot_inner">
                     <h2 class="container_jackpot_title" id="jackpot-title">Джекпоты</h2>
                     <div class="content_panel" data-slider data-slider-defer>
                         <div class="wrapper_slider">
                             <div class="wrapper_slider_viewport">
-                                <ul class="wrapper_slider_track">
-                                    <li class="item_slide container_jackpot_slide" aria-roledescription="slide"
-                                        aria-label="1 из 3">
+                                <div class="wrapper_slider_track">
+                                    <div class="item_slide container_jackpot_slide" role="group" aria-roledescription="slide" aria-label="1 из 3">
                                         <img class="container_jackpot_img"
                                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                              data-src="img/jackpot/ozwins.webp" width="1760" height="660"
                                              decoding="async" alt="Джекпот в игре Ozwin’s Jackpots"
                                              data-srcset="img/jackpot/ozwins-960.webp 960w, img/jackpot/ozwins.webp 1760w"
-                                             sizes="100vw">
+                                             data-sizes="100vw">
                                         <p class="container_jackpot_label">Сумма джекпота сейчас</p>
                                         <p class="container_jackpot_sum">727 364 ₴</p>
                                         <span class="container_jackpot_cta">
                                             <button class="btn btn_green" type="button" data-modal="play-modal">Испытать удачу</button>
                                          </span>
-                                    </li>
-                                    <li class="item_slide container_jackpot_slide" aria-roledescription="slide"
-                                        aria-label="2 из 3">
+                                    </div>
+                                    <div class="item_slide container_jackpot_slide" role="group" aria-roledescription="slide" aria-label="2 из 3" inert>
                                         <img class="container_jackpot_img"
                                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                              data-src="img/jackpot/divine.webp" width="1760" height="660"
                                              decoding="async" alt="Джекпот в игре Divine Fortune"
                                              data-srcset="img/jackpot/divine-960.webp 960w, img/jackpot/divine.webp 1760w"
-                                             sizes="100vw">
+                                             data-sizes="100vw">
                                         <p class="container_jackpot_label">Сумма джекпота сейчас</p>
                                         <p class="container_jackpot_sum">1 438 254 ₴</p>
                                         <span class="container_jackpot_cta">
                                             <button class="btn btn_green" type="button" data-modal="play-modal">Испытать удачу</button>
                                         </span>
-                                    </li>
-                                    <li class="item_slide container_jackpot_slide" aria-roledescription="slide"
-                                        aria-label="3 из 3">
+                                    </div>
+                                    <div class="item_slide container_jackpot_slide" role="group" aria-roledescription="slide" aria-label="3 из 3" inert>
                                         <img class="container_jackpot_img"
                                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                              data-src="img/jackpot/holmes.webp" width="1760" height="660"
                                              decoding="async" alt="Джекпот в игре Holmes and the Stolen Stones"
                                              data-srcset="img/jackpot/holmes-960.webp 960w, img/jackpot/holmes.webp 1760w"
-                                             sizes="100vw">
+                                             data-sizes="100vw">
                                         <p class="container_jackpot_label">Сумма джекпота сейчас</p>
                                         <p class="container_jackpot_sum">379 664 ₴</p>
                                         <span class="container_jackpot_cta">
                                             <button class="btn btn_green" type="button" data-modal="play-modal">Испытать удачу</button>
                                         </span>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                             <button class="wrapper_slider_arrow wrapper_slider_arrow_prev" type="button"
                                     aria-label="Предыдущий джекпот">&#8249;
@@ -943,10 +942,12 @@
         <article class="content_section container_article container_article_pb" id="review" lang="ru"
                  aria-labelledby="review-title">
             <div class="container">
-                <h1 class="container_article_title" id="review-title">Обзор Риобет
+                <div class="container_article_title">
+                    <h2 id="review-title">Обзор Риобет</h2>
                     <img class="container_article_title-ico" src="img/icons/slot-machine.png?v=3" width="22" height="22"
-                         alt="" decoding="async">лицензионное онлайн казино на деньги с моментальным выводом
-                </h1>
+                         alt="" decoding="async">
+                    <p>лицензионное онлайн казино на деньги с моментальным выводом</p>
+                </div>
                 <div class="container_subscribe">
                     <p class="container_subscribe_title">Ты заслуживаешь только лучшие бонусы!</p>
                     <p class="container_subscribe_text">
@@ -1021,7 +1022,7 @@
                                 <div class="container_table_cell">E-mail</div>
                             </div>
                             <div class="container_table_td" role="cell">
-                                <div class="container_table_cell">support@riobet.com</div>
+                                <div class="container_table_cell"><a href="mailto:support@riobet.com">support@riobet.com</a></div>
                             </div>
                         </div>
                         <div class="container_table_row" role="row">
@@ -1029,7 +1030,7 @@
                                 <div class="container_table_cell">Skype</div>
                             </div>
                             <div class="container_table_td" role="cell">
-                                <div class="container_table_cell">riosupport</div>
+                                <div class="container_table_cell"><a href="skype:riosupport?chat">riosupport</a></div>
                             </div>
                         </div>
                         <div class="container_table_row" role="row">
@@ -1037,7 +1038,7 @@
                                 <div class="container_table_cell">Tel</div>
                             </div>
                             <div class="container_table_td" role="cell">
-                                <div class="container_table_cell">+372 602 79 83</div>
+                                <div class="container_table_cell"><a href="tel:+3726027983">+372 602 79 83</a></div>
                             </div>
                         </div>
                     </div>
@@ -1346,22 +1347,16 @@
         <div class="container_footer_links">
             <div class="container">
                 <nav class="container_footer_nav" aria-label="Информация">
-                    <div class="container_footer_col">
-                        <a href="#games">Слоты</a>
-                        <a href="#live">Live Casino</a>
-                    </div>
-                    <div class="container_footer_col">
-                        <a href="#bonuses-promo">Бонусы и промокоды</a>
-                        <a href="#howto">Как начать играть</a>
-                    </div>
-                    <div class="container_footer_col">
-                        <a href="#official">Официальный сайт</a>
-                        <a href="#play">Игра на деньги</a>
-                    </div>
-                    <div class="container_footer_col">
-                        <a href="#faq">Вопросы и ответы</a>
-                        <a href="#review">Обзор</a>
-                    </div>
+                    <ul>
+                        <li><a href="#games">Слоты</a></li>
+                        <li><a href="#live">Live Casino</a></li>
+                        <li><a href="#bonuses-promo">Бонусы и промокоды</a></li>
+                        <li><a href="#howto">Как начать играть</a></li>
+                        <li><a href="#official">Официальный сайт</a></li>
+                        <li><a href="#play">Игра на деньги</a></li>
+                        <li><a href="#faq">Вопросы и ответы</a></li>
+                        <li><a href="#review">Обзор</a></li>
+                    </ul>
                 </nav>
             </div>
         </div>

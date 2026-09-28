@@ -263,6 +263,7 @@ body.scroll-lock .container_nav {
     display: flex;
     align-items: center;
     flex: none;
+    cursor: default;
 }
 
 .logo img {
@@ -293,6 +294,7 @@ body.scroll-lock .container_nav {
     z-index: 100;
     position: fixed;
     width: 100%;
+    min-height: var(--subnav-h);
 }
 
 .container_nav_list {
@@ -468,6 +470,10 @@ body.scroll-lock .container_nav {
         display: none;
     }
 
+    .logo {
+        cursor: pointer;
+    }
+
     .site_menu,
     .site_menu.is-open {
         display: contents;
@@ -524,6 +530,22 @@ body.scroll-lock .container_nav {
     background: #000;
     padding: 14px 16px;
     text-align: center;
+    position: relative;
+}
+
+.container_offer_close {
+    border-radius: 50%;
+    position: absolute;
+    width: 36px;
+    line-height: 1;
+    cursor: pointer;
+    border: 0;
+    background: var(--gold);
+    height: 36px;
+    color: var(--ink);
+    font-size: 22px;
+    top: -12px;
+    right: -6px;
 }
 
 .container_offer_kicker{
@@ -564,18 +586,20 @@ body.scroll-lock .container_nav {
     background: transparent;
 }
 
-.container_offer_code_label{
+.container_offer_code_label,
+.container_offer_code_value {
     color: var(--gold);
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
-    text-transform:uppercase;
+    line-height: 1;
+}
+
+.container_offer_code_label {
+    text-transform: uppercase;
 }
 
 .container_offer_code_value {
-    color: var(--gold);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
 }
 
 .container_offer .btn {
@@ -616,10 +640,6 @@ body.scroll-lock .container_nav {
         padding-inline: 10px;
         gap: 6px;
     }
-
-    .container_offer_code_value {
-        font-size: 16px;
-    }
 }
 
 @media (min-width: 640px) {
@@ -633,10 +653,19 @@ body.scroll-lock .container_nav {
     .container_offer .btn {
         min-width: 220px;
     }
+
+    .container_offer_code_label,
+    .container_offer_code_value {
+        font-size: 18px;
+    }
 }
 
 .container_slider {
     padding-top: 0;
+}
+
+.container_offer[hidden] + .container_slider {
+    padding-top: calc(var(--header-h) + var(--subnav-h));
 }
 
 .wrapper_slider {
@@ -814,7 +843,7 @@ body.scroll-lock .container_nav {
     list-style: none;
     display: grid;
     padding: 0;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: 0;
     gap: 3px;
 }
@@ -1071,22 +1100,24 @@ body.scroll-lock .container_nav {
 
 .container_howto_list {
     list-style: none;
-    padding: 0;
     flex-wrap: wrap;
     margin: 0;
     display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: var(--nav-bg);
 }
 
 .container_howto_item {
-    background: var(--nav-bg);
-    width: 50%;
+    flex: 0 0 calc((100% - 10px) / 2);
+    max-width: calc((100% - 10px) / 2);
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
 }
 
 .container_howto_item:last-child {
-    width: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
 }
 
 .container_howto_item:last-child .container_howto_cta {
@@ -1145,6 +1176,16 @@ article.container_article_pb {
     font-weight: 500;
 }
 
+.container_article .container_article_title h2,
+.container_article .container_article_title p {
+    display: inline;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-transform: inherit;
+}
+
 .container_article_title-ico {
     width: 1.2em;
     display: inline-block;
@@ -1192,9 +1233,7 @@ article.container_article_pb {
 }
 
 .container_article_list li {
-    line-height: inherit;
     line-height: 26px;
-    font-size: inherit;
     font-size: var(--font-size);
     padding: 0 0 10px 15px;
     color: #fff;
@@ -1543,6 +1582,12 @@ article.container_article_pb {
     background: linear-gradient(180deg, #424242 0%, #333333 100%);
 }
 
+.container_table_cell a,
+.container_table_cell a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
 .item_shot_btn {
     width: 100%;
     cursor: zoom-in;
@@ -1781,19 +1826,22 @@ article.container_article_pb {
     background: #303030;
 }
 
-.container_footer_nav {
-    display: flex;
-    flex-direction: column;
+.container_footer_nav ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
     padding: 0;
 }
 
-.container_footer_col {
-    flex-direction: column;
+.container_footer_nav li {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
 }
 
-.container_footer_col a {
+.container_footer_nav a {
     font-size: var(--font-size);
     font-weight: 400;
     color: var(--gold);
@@ -1808,7 +1856,7 @@ article.container_article_pb {
     text-align: center;
 }
 
-.container_footer_col a:hover {
+.container_footer_nav a:hover {
     text-decoration: none;
     color: #fff;
 }
@@ -2016,21 +2064,17 @@ article.container_article_pb {
     }
 
     .container_games_grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .item_winner {
         flex: 0 0 calc((100% - 2 * 7px) / 3);
     }
 
-    .container_footer_nav {
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
-
-    .container_footer_col {
-        min-width: 0;
-        flex: 1 1 0;
+    .container_footer_nav ul {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: column;
     }
 }
 
@@ -2138,7 +2182,7 @@ article.container_article_pb {
     }
 
     .container_games_grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .item_game_play {
@@ -2147,7 +2191,7 @@ article.container_article_pb {
     }
 
     .item_game_play img {
-        width: 23.2px;
+        width: 23px;
         height: 25px;
     }
 
@@ -2174,12 +2218,12 @@ article.container_article_pb {
 
     .container_jackpot_label {
         font-size: clamp(20px, 1.76vw, 31px);
-        bottom: 33.1%;
+        bottom: 33%;
     }
 
     .container_jackpot_sum {
         font-size: clamp(44px, 4.66vw, 82px);
-        bottom: 15.1%;
+        bottom: 15%;
     }
 
     .container_jackpot_cta {
@@ -2190,13 +2234,15 @@ article.container_article_pb {
         padding: 0 24px;
     }
 
-    .container_howto_item {
-        width: 20%;
-        padding: 0 12px;
+    .container_howto_list {
+        gap: 12px;
+        padding: 12px;
     }
 
+    .container_howto_item,
     .container_howto_item:last-child {
-        width: 20%;
+        flex-basis: calc((100% - 48px) / 5);
+        max-width: calc((100% - 48px) / 5);
     }
 
     .container_howto_item:last-child .container_howto_cta {
@@ -2304,7 +2350,7 @@ article.container_article_pb {
 
     .container_article h3 {
         margin-bottom: 20px;
-        line-height: 19.2px;
+        line-height: 19px;
         font-size: var(--font-size);
     }
 
@@ -2340,7 +2386,7 @@ article.container_article_pb {
 .container_faq_a,
 .container_bonus_title,
 .container_bonus_tier,
-.container_footer_col a {
+.container_footer_nav a {
     overflow-wrap: anywhere;
     min-width: 0;
     max-width: 100%;
@@ -2354,10 +2400,6 @@ article.container_article_pb {
     overflow: hidden;
 }
 
-.container_footer_col {
-    min-width: 0;
-    max-width: 100%;
-}
 
 @media (max-width: 599px) {
     .container_games_title,
@@ -2433,7 +2475,7 @@ article.container_article_pb {
         font-size: 28px;
     }
 
-    .container_footer_col a {
+    .container_footer_nav a {
         min-height: 44px;
         font-size: 14px;
     }

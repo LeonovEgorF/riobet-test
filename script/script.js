@@ -4,6 +4,11 @@ const loadImageFromData = (imageElement) => {
     if (!imageElement || !imageElement.getAttribute('data-src')) {
         return;
     }
+    const imageSizes = imageElement.getAttribute('data-sizes');
+    if (imageSizes) {
+        imageElement.sizes = imageSizes;
+        imageElement.removeAttribute('data-sizes');
+    }
     const imageSrcset = imageElement.getAttribute('data-srcset');
     if (imageSrcset) {
         imageElement.srcset = imageSrcset;
@@ -68,6 +73,10 @@ const initSlider = (slider) => {
     }
     const renderCurrentSlide = () => {
         track.style.transform = 'translateX(' + -index * 100 + '%)';
+
+        slides.forEach((slide, slideIndex) => {
+            slide.inert = slideIndex !== index;
+        });
 
         if (ready) {
             loadCurrentAndNextImage(index);
@@ -637,10 +646,21 @@ const initAnchorLinks = () => {
         }
 
         event.preventDefault();
-        target.scrollIntoView({
-            behavior: reducedMotion ? 'auto' : 'smooth',
-            block: 'start',
-        });
+
+        const notRendered = target.hidden || target.getClientRects().length === 0;
+
+        if (id === 'top' || notRendered) {
+            window.scrollTo({
+                top: 0,
+                behavior: reducedMotion ? 'auto' : 'smooth',
+            });
+        } else {
+            target.scrollIntoView({
+                behavior: reducedMotion ? 'auto' : 'smooth',
+                block: 'start',
+            });
+        }
+
         history.pushState(null, '', hash);
     };
 
@@ -705,6 +725,19 @@ const initBurgerMenu = () => {
     desktopQuery.addEventListener('change', handleDesktopChange);
 };
 
+
+
+const initOfferClose = () => {
+    const offer = document.querySelector('.container_offer');
+    const closeBtn = document.querySelector('.container_offer_close');
+
+    if (!offer || !closeBtn) return;
+
+    closeBtn.addEventListener('click', () => {
+        offer.hidden = true;
+    });
+};
+
 initSliders();
 initGames();
 initWinners();
@@ -714,3 +747,4 @@ initSubscribe();
 initModals();
 initAnchorLinks();
 initBurgerMenu();
+initOfferClose();

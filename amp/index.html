@@ -74,6 +74,7 @@
         }
 
         html{
+            scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
         }
 
@@ -94,9 +95,8 @@
 
         a{
             text-decoration: none;
-            transition: color var(--ease), background-color var(--ease);
-            cursor: pointer;
             color: var(--gold);
+            transition: color var(--ease), background-color var(--ease);
         }
 
         a:hover{
@@ -285,6 +285,7 @@
             display: flex;
             align-items: center;
             flex: none;
+            cursor: default;
         }
 
         .logo:hover{
@@ -475,9 +476,9 @@
             margin-right: 8px;
             display: flex;
             position: relative;
+            flex: none;
             width: 18px;
             height: 18px;
-            flex: none;
         }
 
         .container_nav_ico amp-img{
@@ -523,6 +524,22 @@
             background: #000;
             padding: 14px 16px;
             text-align: center;
+            position: relative;
+        }
+
+        .container_offer_close{
+            border-radius: 50%;
+            position: absolute;
+            width: 36px;
+            line-height: 1;
+            cursor: pointer;
+            border: 0;
+            background: var(--gold);
+            height: 36px;
+            color: var(--ink);
+            font-size: 22px;
+            top: -14px;
+            right: -6px;
         }
 
         .container_offer_kicker{
@@ -562,18 +579,20 @@
             background: transparent;
         }
 
-        .container_offer_code_label{
+        .container_offer_code_label,
+        .container_offer_code_value {
             color: var(--gold);
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 700;
+            line-height: 1;
+        }
+
+        .container_offer_code_label {
             text-transform: uppercase;
         }
 
         .container_offer_code_value{
-            color: var(--gold);
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
         }
 
         .container_offer .btn{
@@ -614,10 +633,6 @@
                 padding-inline: 10px;
                 gap: 6px;
             }
-
-            .container_offer_code_value{
-                font-size: 16px;
-            }
         }
 
         @media (min-width: 640px){
@@ -631,10 +646,19 @@
             .container_offer .btn{
                 min-width: 220px;
             }
+
+            .container_offer_code_label,
+            .container_offer_code_value {
+                font-size: 18px;
+            }
         }
 
         .container_slider{
             padding-top: 0;
+        }
+
+        .container_offer[hidden] + .container_slider{
+            padding-top: calc(var(--header-h) + var(--subnav-h));
         }
 
         .item_slide{
@@ -686,7 +710,7 @@
             list-style: none;
             display: grid;
             padding: 0;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             margin: 0;
             gap: 3px;
         }
@@ -938,18 +962,19 @@
 
         .container_howto_list{
             list-style: none;
-            padding: 0;
             flex-wrap: wrap;
             margin: 0;
             display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: var(--nav-bg);
         }
 
         .container_howto_item{
-            background: var(--nav-bg);
-            width: 50%;
+            flex: 0 0 calc((100% - 10px) / 2);
+            max-width: calc((100% - 10px) / 2);
             display: flex;
             flex-direction: column;
-            padding: 0 10px;
         }
 
         .container_howto_icon{
@@ -1005,6 +1030,16 @@
             font-weight: 500;
         }
 
+        .container_article .container_article_title h2,
+        .container_article .container_article_title p{
+            display: inline;
+            margin: 0;
+            color: inherit;
+            font: inherit;
+            line-height: inherit;
+            text-transform: inherit;
+        }
+
         .container_article_title-ico{
             width: 1.2em;
             display: inline-block;
@@ -1053,9 +1088,7 @@
         }
 
         .container_article_list li {
-            line-height: inherit;
             line-height: 26px;
-            font-size: inherit;
             font-size: var(--font-size);
             padding: 0 0 10px 15px;
             color: #fff;
@@ -1387,6 +1420,12 @@
             background: linear-gradient(180deg, #424242 0%, #333333 100%);
         }
 
+        .container_table_cell a,
+        .container_table_cell a:hover{
+            color: inherit;
+            text-decoration: none;
+        }
+
         .container_faq{
             display: flex;
             flex-direction: column;
@@ -1558,7 +1597,6 @@
             text-align: left;
             font-family: inherit;
             font-size: var(--font-size);
-            font-weight: 700;
             margin: 0;
             padding: 6px 15px;
             background: transparent;
@@ -1608,19 +1646,22 @@
 
         }
 
-        .container_footer_nav{
-            display: flex;
-            flex-direction: column;
+        .container_footer_nav ul{
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            margin: 0;
             padding: 0;
         }
 
-        .container_footer_col{
-            flex-direction: column;
+        .container_footer_nav li{
             display: flex;
-            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            max-width: 100%;
         }
 
-        .container_footer_col a{
+        .container_footer_nav a{
             font-size: var(--font-size);
             font-weight: 400;
             color: var(--gold);
@@ -1635,7 +1676,7 @@
             text-align: center;
         }
 
-        .container_footer_col a:hover{
+        .container_footer_nav a:hover{
             text-decoration: none;
             color: #fff;
         }
@@ -1719,6 +1760,10 @@
                 display: none;
             }
 
+            .logo{
+                cursor: pointer;
+            }
+
             .site_menu,
             .site_menu.is-open{
                 display: contents;
@@ -1729,21 +1774,17 @@
             }
 
             .container_games_grid{
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
 
             .item_winner{
                 flex: 0 0 calc((100% - 2 * 7px) / 3);
             }
 
-            .container_footer_nav{
-                flex-direction: row;
-                flex-wrap: nowrap;
-            }
-
-            .container_footer_col{
-                min-width: 0;
-                flex: 1 1 0;
+            .container_footer_nav ul{
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-rows: repeat(2, auto);
+                grid-auto-flow: column;
             }
         }
 
@@ -1828,7 +1869,7 @@
             }
 
             .container_games_grid{
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
 
             .item_game_play{
@@ -1859,12 +1900,12 @@
 
             .container_jackpot_label{
                 font-size: clamp(20px, 1.76vw, 31px);
-                bottom: 33.1%;
+                bottom: 33%;
             }
 
             .container_jackpot_sum{
                 font-size: clamp(44px, 4.66vw, 82px);
-                bottom: 15.1%;
+                bottom: 15%;
             }
 
             .container_jackpot_cta{
@@ -1875,9 +1916,15 @@
                 padding: 0 24px;
             }
 
-            .container_howto_item{
-                width: 20%;
-                padding: 0 12px;
+            .container_howto_list{
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .container_howto_item,
+            .container_howto_item:last-child{
+                flex-basis: calc((100% - 48px) / 5);
+                max-width: calc((100% - 48px) / 5);
             }
 
             .container_howto_icon{
@@ -1978,7 +2025,7 @@
 
             .container_article h3{
                 margin-bottom: 20px;
-                line-height: 19.2px;
+                line-height: 19px;
                 font-size: var(--font-size);
             }
 
@@ -2134,11 +2181,11 @@
         .container_howto_list { width: 100%; }
         .container_howto_item {
             box-sizing: border-box;
-            flex: 0 0 50%;
-            max-width: 50%;
+            flex: 0 0 calc((100% - 10px) / 2);
+            max-width: calc((100% - 10px) / 2);
         }
         .container_howto_item:last-child {
-            flex: 0 0 100%;
+            flex-basis: 100%;
             max-width: 100%;
         }
         .container_howto_item:last-child .container_howto_cta {
@@ -2146,13 +2193,10 @@
             align-self: center;
         }
         @media (min-width: 900px) {
-            .container_howto_item {
-                flex: 0 0 20%;
-                max-width: 20%;
-            }
+            .container_howto_item,
             .container_howto_item:last-child {
-                flex: 0 0 20%;
-                max-width: 20%;
+                flex: 0 0 calc((100% - 48px) / 5);
+                max-width: calc((100% - 48px) / 5);
             }
             .container_howto_item:last-child .container_howto_cta {
                 width: 100%;
@@ -2161,7 +2205,6 @@
         }
 
         .container_games_grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
             width: 100%;
             max-width: 100%;
             overflow: hidden;
@@ -2189,20 +2232,15 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        .logo { width: auto; }
-        .logo amp-img { width: auto; max-width: 100%; height: 32px; }
+        .logo amp-img {
+            width: auto;
+            max-width: 100%;
+            height: 32px;
+        }
         @media (min-width: 420px) {
             .logo amp-img { height: 38px; }
         }
-        @media (min-width: 600px) {
-            .container_games_grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
         @media (min-width: 900px) {
-            .container_games_grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-            }
             .logo amp-img { height: 70px; }
         }
 
@@ -2212,7 +2250,10 @@
             height: 100%;
             overflow: hidden;
         }
-        .item_winner amp-img img { object-fit: cover; }
+
+        .item_winner amp-img img {
+            object-fit: cover;
+        }
 
         html, body {
             overflow-x: hidden;
@@ -2229,14 +2270,22 @@
             overflow: hidden;
         }
         amp-carousel.amp_hero amp-img,
-        amp-carousel.amp_jackpot amp-img { max-width: 100%; }
+        amp-carousel.amp_jackpot amp-img {
+            max-width: 100%;
+        }
 
         amp-img.container_bonus_hero img,
-        .container_bonus_hero img { object-fit: contain; }
+        .container_bonus_hero img {
+            object-fit: contain;
+        }
         amp-img.container_bonus_crown img,
-        .container_bonus_crown img { object-fit: contain; }
+        .container_bonus_crown img {
+            object-fit: contain;
+        }
         amp-img.container_bonus_arrow img,
-        .container_bonus_arrow img { object-fit: contain; }
+        .container_bonus_arrow img {
+            object-fit: contain;
+        }
 
         @media (min-width: 900px) {
             .item_game_play {
@@ -2353,7 +2402,7 @@
         .container_faq_a,
         .container_bonus_title,
         .container_bonus_tier,
-        .container_footer_col a{
+        .container_footer_nav a{
             overflow-wrap: anywhere;
             min-width: 0;
             max-width: 100%;
@@ -2364,11 +2413,6 @@
         amp-carousel .amp-carousel-button{
             min-width: 0;
             overflow: hidden;
-        }
-
-        .container_footer_col{
-            min-width: 0;
-            max-width: 100%;
         }
 
         @media (max-width: 599px) {
@@ -2446,7 +2490,7 @@
                 font-size: 28px;
             }
 
-            .container_footer_col a {
+            .container_footer_nav a {
                 min-height: 44px;
                 font-size: 14px;
             }
@@ -2488,7 +2532,7 @@
 <body>
 <header class="container_header">
     <div class="container wrapper_content">
-        <a class="logo" href="#top" aria-label="Riobet — на главную">
+        <a class="logo" href="#top" on="tap:top.scrollTo(duration=300, position=top)" aria-label="Riobet — на главную">
             <amp-img src="../img/logo.svg" width="175" height="56" layout="intrinsic" alt="Riobet"></amp-img>
         </a>
         <button class="burger" type="button" [class]="menuOpen ? 'burger is-open' : 'burger'" on="tap:AMP.setState({menuOpen: !menuOpen})" aria-label="Меню">
@@ -2531,10 +2575,12 @@
     </div>
 </header>
 
-<main>
-    <section class="container_offer" id="top" aria-label="Приветственный бонус">
+<main id="top">
+    <h1 class="visually-hidden">Обзор Риобет</h1>
+    <section class="container_offer" aria-label="Приветственный бонус" [hidden]="offerClosed">
         <div class="container">
             <div class="container_offer_box">
+                <button class="container_offer_close" type="button" on="tap:AMP.setState({offerClosed: true})" aria-label="Закрыть">×</button>
                 <p class="container_offer_kicker">Приветственный бонус</p>
                 <p class="container_offer_text">100% на первый депозит и 150 фриспинов</p>
                 <div class="container_offer_row">
@@ -3007,11 +3053,11 @@
             aria-labelledby="review-title"
     >
         <div class="container">
-            <h1 class="container_article_title" id="review-title">
-                Обзор Риобет
+            <div class="container_article_title">
+                <h2 id="review-title">Обзор Риобет</h2>
                 <amp-img class="container_article_title-ico" src="../img/icons/slot-machine.png?v=3" width="22" height="22" layout="fixed" alt=""></amp-img>
-                лицензионное онлайн казино на деньги с моментальным выводом
-            </h1>
+                <p>лицензионное онлайн казино на деньги с моментальным выводом</p>
+            </div>
             <div class="container_subscribe">
                 <p class="container_subscribe_title">Ты заслуживаешь только лучшие бонусы!</p>
                 <p class="container_subscribe_text">
@@ -3069,15 +3115,15 @@
                     </div>
                     <div class="container_table_row" role="row">
                         <div class="container_table_th" role="rowheader"><div class="container_table_cell">E-mail</div></div>
-                        <div class="container_table_td" role="cell"><div class="container_table_cell">support@riobet.com</div></div>
+                        <div class="container_table_td" role="cell"><div class="container_table_cell"><a href="mailto:support@riobet.com">support@riobet.com</a></div></div>
                     </div>
                     <div class="container_table_row" role="row">
                         <div class="container_table_th" role="rowheader"><div class="container_table_cell">Skype</div></div>
-                        <div class="container_table_td" role="cell"><div class="container_table_cell">riosupport</div></div>
+                        <div class="container_table_td" role="cell"><div class="container_table_cell"><a href="skype:riosupport?chat">riosupport</a></div></div>
                     </div>
                     <div class="container_table_row" role="row">
                         <div class="container_table_th" role="rowheader"><div class="container_table_cell">Tel</div></div>
-                        <div class="container_table_td" role="cell"><div class="container_table_cell">+372 602 79 83</div></div>
+                        <div class="container_table_td" role="cell"><div class="container_table_cell"><a href="tel:+3726027983">+372 602 79 83</a></div></div>
                     </div>
                 </div>
             </div>
@@ -3322,22 +3368,16 @@
     <div class="container_footer_links">
         <div class="container">
             <nav class="container_footer_nav" aria-label="Информация">
-                <div class="container_footer_col">
-                    <a href="#games">Слоты</a>
-                    <a href="#live">Live Casino</a>
-                </div>
-                <div class="container_footer_col">
-                    <a href="#bonuses-promo">Бонусы и промокоды</a>
-                    <a href="#howto">Как начать играть</a>
-                </div>
-                <div class="container_footer_col">
-                    <a href="#official">Официальный сайт</a>
-                    <a href="#play">Игра на деньги</a>
-                </div>
-                <div class="container_footer_col">
-                    <a href="#faq">Вопросы и ответы</a>
-                    <a href="#review">Обзор</a>
-                </div>
+                <ul>
+                    <li><a href="#games">Слоты</a></li>
+                    <li><a href="#live">Live Casino</a></li>
+                    <li><a href="#bonuses-promo">Бонусы и промокоды</a></li>
+                    <li><a href="#howto">Как начать играть</a></li>
+                    <li><a href="#official">Официальный сайт</a></li>
+                    <li><a href="#play">Игра на деньги</a></li>
+                    <li><a href="#faq">Вопросы и ответы</a></li>
+                    <li><a href="#review">Обзор</a></li>
+                </ul>
             </nav>
         </div>
     </div>
