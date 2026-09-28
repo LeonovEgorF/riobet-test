@@ -196,8 +196,27 @@ const initSlider = (slider) => {
         } else if (swipe >= 40) {
             goToSlide(index - 1);
         }
+    };
+
+    progress.addEventListener('click', handleProgressClick);
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', handlePreviousClick);
     }
-}
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', handleNextClick);
+    }
+
+    slider.addEventListener('mouseenter', handleMouseEnter);
+    slider.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchend', handleTouchEnd);
+
+    renderCurrentSlide();
+    startAutoSlide();
+};
 
 /* Находит все блоки с data-slider и включает каждый. */
 const initSliders = () => {
@@ -674,6 +693,7 @@ const initSubscribe = () => {
 
     const status = document.getElementById('subscribe-status');
     const email = document.getElementById('email');
+    const emailRe = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const handleSubscribeSubmit = (event) => {
         event.preventDefault();
         const value = email.value.trim();
@@ -697,10 +717,11 @@ const initSubscribe = () => {
     form.addEventListener('submit', handleSubscribeSubmit);
 };
 
-initSlider();
-initGames()
+initSliders();
+initGames();
 initWinners();
 initLightbox();
 initTableOfContents();
 initSubscribe();
 initModals();
+initAnchorLinks();
