@@ -277,6 +277,18 @@ const initGames = () => {
         catBtn.addEventListener('click', handleCategoryClick);
     });
 
+    document.querySelectorAll('[data-games-cat]').forEach((link) => {
+        link.addEventListener('click', () => {
+            const activeBtn = catBtns.find((catBtn) => catBtn.dataset.cat === link.dataset.gamesCat);
+
+            if (!activeBtn) {
+                return;
+            }
+
+            showGamesByCategory(activeBtn.dataset.cat, activeBtn, activeBtn.dataset.title);
+        });
+    });
+
     showGamesByCategory('popular', catBtns[0], catBtns[0].dataset.title);
 };
 
