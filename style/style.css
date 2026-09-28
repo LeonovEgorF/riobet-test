@@ -795,82 +795,6 @@ body.scroll-lock .container_nav {
     background: var(--gold-hi);
 }
 
-.container_cats_item_drop > .container_cats_btn {
-    position: relative;
-    padding-right: 2.2em;
-}
-
-.container_cats_item_drop > .container_cats_btn::after {
-    margin-top: -0.5em;
-    transition: transform var(--ease);
-    background: url("../img/icons/arrow-down-sign-to-navigate.png") center / 1em 1em
-    no-repeat;
-    width: 1em;
-    pointer-events: none;
-    content: "";
-    height: 1em;
-    top: 50%;
-    right: 1em;
-    position: absolute;
-}
-
-.container_cats_item_drop.open > .container_cats_btn::after {
-    transform: rotate(178deg);
-}
-
-.container_cats_drop {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    position: static;
-    background: #000;
-    gap: 3px;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    margin: 0;
-    padding: 0 5px;
-    border: 1px solid transparent;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-        max-height 0.35s ease,
-        opacity 0.3s ease,
-        margin-top 0.35s ease,
-        padding 0.35s ease,
-        border-color 0.3s ease,
-        visibility 0s linear 0.35s;
-}
-
-.container_cats_item_drop.open .container_cats_drop {
-    max-height: 140px;
-    opacity: 1;
-    margin-top: 8px;
-    padding: 5px;
-    border-color: var(--gold);
-    visibility: visible;
-    pointer-events: auto;
-    transition:
-        max-height 0.35s ease,
-        opacity 0.3s ease,
-        margin-top 0.35s ease,
-        padding 0.35s ease,
-        border-color 0.3s ease,
-        visibility 0s linear 0s;
-}
-
-.container_cats_sub {
-    color: var(--gold);
-    background: transparent;
-    width: 100%;
-    display: flex;
-}
-
-.container_cats_sub:hover {
-    color: var(--gold);
-    background: rgba(237, 201, 127, 0.12);
-}
-
 .container_games_live .container_games_inner {
     padding-top: 0;
 }
@@ -2204,24 +2128,6 @@ article.container_article_pb {
     .container_cats_list {
         gap: 24px;
         flex-direction: row;
-    }
-
-    .container_cats_drop {
-        z-index: 10;
-        left: 0;
-        right: 0;
-        top: 100%;
-        position: absolute;
-        margin: 0;
-    }
-
-    .container_cats_drop::before {
-        left: 0;
-        right: 0;
-        top: -8px;
-        position: absolute;
-        content: "";
-        height: 8px;
     }
 
     .container_games_title,

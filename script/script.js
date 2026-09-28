@@ -235,9 +235,6 @@ const initGames = () => {
     }
 
     const catBtns = Array.from(document.querySelectorAll('.container_cats_btn'));
-
-    const subBtns = Array.from(document.querySelectorAll('.container_cats_sub'));
-    const drop = document.querySelector('.container_cats_item_drop');
     const title = document.getElementById('games-title');
     const showGamesByCategory = (cat, activeBtn, label) => {
         tiles.forEach((tile) => {
@@ -263,17 +260,6 @@ const initGames = () => {
         }
     };
 
-    const setDropdownOpen = (isOpen) => {
-        if (!drop) {
-            return;
-        }
-
-        drop.classList.toggle('open', isOpen);
-        const toggle = drop.querySelector('.container_cats_toggle');
-
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    };
-
     catBtns.forEach((catBtn) => {
         const handleCategoryClick = () => {
             showGamesByCategory(catBtn.dataset.cat, catBtn, catBtn.dataset.title);
@@ -281,65 +267,6 @@ const initGames = () => {
 
         catBtn.addEventListener('click', handleCategoryClick);
     });
-
-    subBtns.forEach((subBtn) => {
-        const handleSubcategoryClick = () => {
-            const toggle = document.querySelector('.container_cats_toggle');
-            showGamesByCategory(
-                subBtn.dataset.cat,
-                toggle,
-                subBtn.dataset.title,
-            );
-            setDropdownOpen(false);
-        };
-
-        subBtn.addEventListener('click', handleSubcategoryClick);
-    });
-
-    if (drop) {
-        const hover = window.matchMedia('(hover: hover)').matches;
-        const toggle = drop.querySelector('.container_cats_toggle');
-        const handleDropdownMouseEnter = () => {
-            setDropdownOpen(true);
-        };
-
-        const handleDropdownMouseLeave = () => {
-            setDropdownOpen(false);
-        };
-        const handleDropdownToggleClick = () => {
-            const opened = drop.classList.contains('open');
-            setDropdownOpen(!opened);
-        };
-
-        if (hover) {
-            drop.addEventListener('mouseenter', handleDropdownMouseEnter);
-            drop.addEventListener('mouseleave', handleDropdownMouseLeave);
-        } else {
-            toggle.addEventListener('click', handleDropdownToggleClick);
-        }
-        const handleDropdownFocusOut = (event) => {
-            if (!drop.contains(event.relatedTarget)) {
-                console.log('focusout');
-                setDropdownOpen(false);
-            }
-        };
-        const handleClickOutside = (event) => {
-            if (!drop.contains(event.target)) {
-                setDropdownOpen(false);
-            }
-        };
-
-        const handleEscapeKey = (event) => {
-            if (event.key === 'Escape') {
-                setDropdownOpen(false);
-            }
-        };
-
-        drop.addEventListener('focusout', handleDropdownFocusOut);
-
-        document.addEventListener('click', handleClickOutside);
-        document.addEventListener('keydown', handleEscapeKey);
-    }
 
     showGamesByCategory('popular', catBtns[0], catBtns[0].dataset.title);
 };
