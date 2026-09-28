@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="canonical" href="index.html">
+        <link rel="canonical" href="https://riobet.com/">
         <meta name="theme-color" content="#000000">
         <meta name="robots" content="index, follow">
-        <link rel="amphtml" href="amp/index.html">
+        <link rel="amphtml" href="https://riobet.com/amp/index.html">
         <meta name="description" content="Riobet">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Riobet">
         <meta property="og:image" content="img/screen-1.webp">
-        <title>Document</title>
+        <title>Riobet</title>
         <link rel="preload" as="font" type="font/woff2" href="fonts/rc-cyrillic.woff2" crossorigin>
         <link rel="preload" as="image" href="img/banner-live.webp" fetchpriority="high">
         <link rel="stylesheet" href="./style/style.css">
@@ -23,40 +23,45 @@
             <a class="logo" href="#top" aria-label="Riobet — на главную">
                 <img src="img/logo.svg" width="175" height="56" alt="Риобет" fetchpriority="high"/>
             </a>
-            <div class="buttons">
-                <button class="btn btn_login" type="button" data-modal="login-modal">Вход</button>
-                <button class="btn btn_gold" type="button" data-modal="signup-modal">Регистрация</button>
+            <button class="burger" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Открыть меню">
+                <span class="burger_box" aria-hidden="true"></span>
+            </button>
+            <div class="site_menu" id="site-menu">
+                <div class="buttons">
+                    <button class="btn btn_login" type="button" data-modal="login-modal">Вход</button>
+                    <button class="btn btn_gold" type="button" data-modal="signup-modal">Регистрация</button>
+                </div>
+                <nav class="container_nav" aria-label="Разделы казино">
+                    <ul class="container container_nav_list">
+                        <li>
+                            <a class="container_nav_item" href="https://riobet.com/pt-br/">
+                                <span class="container_nav_ico" aria-hidden="true">
+                                    <img src="img/icons/nav-official.svg" width="28" height="28" alt="">
+                                </span>
+                                Официальный сайт
+                            </a>
+                        </li>
+                        <li>
+                            <a class="container_nav_item" href="#review">
+                                <span class="container_nav_ico" aria-hidden="true">
+                                    <img src="img/icons/nav-money.svg" width="28" height="28" alt="">
+                                </span>
+                                Игра на деньги
+                            </a>
+                        </li>
+                        <li>
+                            <a class="container_nav_item" href="#bonuses-promo">
+                                <span class="container_nav_ico" aria-hidden="true">
+                                    <img src="img/icons/nav-bonus.svg" width="28" height="28" alt="">
+                                </span>
+                                Бонусы
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
-    <nav class="container_nav" aria-label="Разделы казино">
-        <ul class="container container_nav_list">
-            <li>
-                <a class="container_nav_item" href="https://riobet.com/pt-br/">
-                    <span class="container_nav_ico" aria-hidden="true">
-                        <img src="img/icons/nav-official.svg" width="28" height="28" alt="">
-                    </span>
-                    Официальный сайт
-                </a>
-            </li>
-            <li>
-                <a class="container_nav_item" href="#review">
-                    <span class="container_nav_ico" aria-hidden="true">
-                        <img src="img/icons/nav-money.svg" width="28" height="28" alt="">
-                    </span>
-                    Игра на деньги
-                </a>
-            </li>
-            <li>
-                <a class="container_nav_item" href="#bonuses-promo">
-                    <span class="container_nav_ico" aria-hidden="true">
-                        <img src="img/icons/nav-bonus.svg" width="28" height="28" alt="">
-                    </span>
-                    Бонусы
-                </a>
-            </li>
-        </ul>
-    </nav>
     <main>
         <section class="container_offer" id="top" aria-label="Приветственный бонус">
             <div class="container">
@@ -886,7 +891,7 @@
             </div>
         </section>
 
-        <section class="container_howto" aria-labelledby="howto-title">
+        <section class="container_howto" id="howto" aria-labelledby="howto-title">
             <div class="container">
                 <div class="container_howto_inner">
                     <h2 class="container_howto_heading" id="howto-title">Как начать играть?</h2>
@@ -1070,8 +1075,7 @@
                 </p>
 
                 <div class="container_article_shot">
-                    <button class="item_shot_btn" type="button" data-full="img/riobet-glavnaya.webp"
-                            data-caption="Официальный сайт РиоБет">
+                    <button class="item_shot_btn" type="button" data-full="img/riobet-glavnaya.webp">
                         <img src="img/riobet-glavnaya.webp"
                              srcset="img/riobet-glavnaya-800.webp 800w, img/riobet-glavnaya.webp 900w"
                              sizes="(max-width: 700px) 100vw, 900px" width="900" height="450" loading="lazy"
@@ -1520,7 +1524,6 @@
                 ×
             </button>
             <img class="container_lightbox_img" id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
-            <p class="container_lightbox_caption" id="lightbox-caption"></p>
         </div>
     </div>
 

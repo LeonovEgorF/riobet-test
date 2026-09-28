@@ -1,8 +1,5 @@
 'use strict'
 
-
-/* Берёт адрес из data-src и подставляет его в src, когда картинку пора показать. */
-
 const loadImageFromData = (imageElement) => {
     if (!imageElement || !imageElement.getAttribute('data-src')) {
         return;
@@ -16,8 +13,6 @@ const loadImageFromData = (imageElement) => {
     imageElement.removeAttribute('data-src');
 };
 
-/* Читает --slide-duration из CSS и переводит секунды в миллисекунды. Если переменной нет, оставляет 6 секунд. */
-
 const getSlideDuration = () => {
     const durationFromCss = getComputedStyle(document.documentElement).getPropertyValue(
         '--slide-duration',
@@ -25,7 +20,6 @@ const getSlideDuration = () => {
     const result = parseFloat(durationFromCss);
     return result ? result * 1000 : 6000;
 };
-/* Включает один слайдер: лента, точки, стрелки, автопрокрутка, пауза и свайп. */
 
 const initSlider = (slider) => {
     const track = slider.querySelector('.wrapper_slider_track');
@@ -218,13 +212,11 @@ const initSlider = (slider) => {
     startAutoSlide();
 };
 
-/* Находит все блоки с data-slider и включает каждый. */
 const initSliders = () => {
     const sliders = document.querySelectorAll('[data-slider]');
     sliders.forEach(initSlider);
 };
 
-/* Фильтр слотов по категориям и выпадающий список Live Casino. */
 const initGames = () => {
     const grid = document.getElementById('games-grid');
 
@@ -343,7 +335,6 @@ const initGames = () => {
             }
         };
 
-
         drop.addEventListener('focusout', handleDropdownFocusOut);
 
         document.addEventListener('click', handleClickOutside);
@@ -353,8 +344,6 @@ const initGames = () => {
     showGamesByCategory('popular', catBtns[0], catBtns[0].dataset.title);
 };
 
-
-/* Не даёт Tab уйти из модального окна: с последнего элемента фокус возвращается на первый. */
 const keepFocusInsideModal = (event, modal) => {
     if (event.key !== 'Tab') {
         return;
@@ -378,12 +367,8 @@ const keepFocusInsideModal = (event, modal) => {
     }
 };
 
-
-
-
 let lockCount = 0;
 
-/* Прячет прокрутку страницы и записывает ширину полосы в --scroll-lock-gap. */
 const lockPageScroll = () => {
     if (lockCount === 0) {
         const gap = window.innerWidth - document.documentElement.clientWidth;
@@ -394,7 +379,6 @@ const lockPageScroll = () => {
     lockCount += 1;
 };
 
-/* Возвращает прокрутку, когда закрыто последнее окно. */
 const unlockPageScroll = () => {
     lockCount = Math.max(0, lockCount - 1);
 
@@ -404,10 +388,8 @@ const unlockPageScroll = () => {
     }
 };
 
-
 let openDialog = () => {};
 
-/* Открытие и закрытие модальных окон: кнопки, клик по фону, Escape и возврат фокуса. */
 const initModals = () => {
     const modals = Array.from(document.querySelectorAll('.container_modal'));
 
@@ -419,7 +401,6 @@ const initModals = () => {
     let lastOpener = null;
     let active = null;
 
-    /* Показывает окно, блокирует прокрутку и ставит фокус на кнопку закрытия. */
     openDialog = (modal, trigger) => {
         if (!modal) {
             return;
@@ -440,7 +421,6 @@ const initModals = () => {
         }
     };
 
-    /* Прячет окно, возвращает прокрутку и фокус на кнопку, которая его открыла. */
     const closeDialog = () => {
         if (!active) {
             return;
@@ -455,7 +435,6 @@ const initModals = () => {
         }
     };
 
-    /* Карточка игры открывает окно с её названием. Остальные кнопки открывают окно из data-modal. */
     const handleOpenClick = (event) => {
         const gameBtn = event.target.closest('.item_game_btn');
 
@@ -474,14 +453,12 @@ const initModals = () => {
         }
     };
 
-    /* Клик по фону или по крестику закрывает окно. */
     const handleModalClick = (event) => {
         if (event.target.classList.contains('container_modal') || event.target.closest('[data-modal-close]')) {
             closeDialog();
         }
     };
 
-    /* Escape закрывает окно, Tab остаётся внутри него. */
     const handleModalKeydown = (event) => {
         if (!active || active.hidden) {
             return;
@@ -599,7 +576,6 @@ const initWinners = () => {
     startWinnersAutoScroll();
 };
 
-
 const initLightbox = () => {
     const lightbox = document.getElementById('lightbox');
     const article = document.querySelector('.container_article');
@@ -609,7 +585,6 @@ const initLightbox = () => {
     }
 
     const shot = document.getElementById('lightbox-img');
-    const caption = document.getElementById('lightbox-caption');
     const closeBtn = document.getElementById('lightbox-close');
     const blankSrc = shot.getAttribute('src');
     let lastFocus = null;
@@ -618,9 +593,8 @@ const initLightbox = () => {
 
         lastFocus = shotBtn;
         shot.src = shotBtn.dataset.full;
-        shot.alt = shotBtn.dataset.caption || '';
-
-        caption.textContent = shotBtn.dataset.caption || '';
+        const preview = shotBtn.querySelector('img');
+        shot.alt = preview ? preview.alt : '';
         lightbox.hidden = false;
         lockPageScroll();
         closeBtn.focus();
@@ -648,10 +622,6 @@ const initLightbox = () => {
         if (event.target === lightbox) {
             closeLightbox();
         }
-
-        if (event.target.classList.contains(' container_lightbox_inner')) {
-            closeLightbox();
-        }
     };
 
     const handleLightboxKeydown = (event) => {
@@ -665,7 +635,6 @@ const initLightbox = () => {
     lightbox.addEventListener('click', handleLightboxBackdropClick);
     document.addEventListener('keydown', handleLightboxKeydown);
 };
-
 
 const initTableOfContents = () => {
     const toggle = document.getElementById('toc-toggle');
@@ -717,6 +686,98 @@ const initSubscribe = () => {
     form.addEventListener('submit', handleSubscribeSubmit);
 };
 
+const initAnchorLinks = () => {
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    if (!links.length) {
+        return;
+    }
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const handleAnchorClick = (event) => {
+        const hash = event.currentTarget.getAttribute('href');
+        const id = hash.slice(1);
+
+        if (!id) {
+            return;
+        }
+
+        const target = document.getElementById(id);
+
+        if (!target) {
+            return;
+        }
+
+        event.preventDefault();
+        target.scrollIntoView({
+            behavior: reducedMotion ? 'auto' : 'smooth',
+            block: 'start',
+        });
+        history.pushState(null, '', hash);
+    };
+
+    links.forEach((link) => {
+        link.addEventListener('click', handleAnchorClick);
+    });
+};
+
+const initBurgerMenu = () => {
+    const burger = document.querySelector('.burger');
+    const menu = document.getElementById('site-menu');
+
+    if (!burger || !menu) {
+        return;
+    }
+
+    const desktopQuery = window.matchMedia('(min-width: 600px)');
+
+    const setMenuOpen = (open) => {
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+        menu.classList.toggle('is-open', open);
+    };
+
+    const handleBurgerClick = (event) => {
+        event.stopPropagation();
+        const opened = burger.getAttribute('aria-expanded') === 'true';
+        setMenuOpen(!opened);
+    };
+
+    const handleDocumentClick = (event) => {
+        if (desktopQuery.matches || burger.getAttribute('aria-expanded') !== 'true') {
+            return;
+        }
+
+        if (event.target.closest('#site-menu')) {
+            if (event.target.closest('a, [data-modal]')) {
+                setMenuOpen(false);
+            }
+            return;
+        }
+
+        setMenuOpen(false);
+    };
+
+    const handleMenuKeydown = (event) => {
+        if (event.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+            setMenuOpen(false);
+            burger.focus();
+        }
+    };
+
+    const handleDesktopChange = () => {
+        if (desktopQuery.matches) {
+            setMenuOpen(false);
+        }
+    };
+
+    burger.addEventListener('click', handleBurgerClick);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleMenuKeydown);
+    desktopQuery.addEventListener('change', handleDesktopChange);
+};
+
 initSliders();
 initGames();
 initWinners();
@@ -725,3 +786,4 @@ initTableOfContents();
 initSubscribe();
 initModals();
 initAnchorLinks();
+initBurgerMenu();

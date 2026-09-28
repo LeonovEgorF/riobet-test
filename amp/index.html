@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html amp lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <title>Riobet</title>
-    <link rel="canonical" href="../index.html">
+    <link rel="canonical" href="https://riobet.com/">
     <meta name="description" content="Riobet">
     <meta name="theme-color" content="#000000">
     <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Ccircle%20cx='16'%20cy='16'%20r='15'%20fill='%231d7a3c'%20stroke='%23edc97f'%20stroke-width='2'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Arial'%20font-size='16'%20font-weight='700'%20fill='%23edc97f'%20text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
     <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <style amp-custom>
         :root{
-            --header-h: 58px;
-            --subnav-h: 38px;
+            --header-h: 56px;
+            --subnav-h: 0px;
+            --side: 20px;
             --grey-btn: #6d6d6d;
             --nav-bg: #303030;
             --green: #27ae60;
@@ -139,7 +144,6 @@
             width: 1px;
         }
 
-        /* Каркас */
         .container{
             width: 100%;
             padding-inline: 10px;
@@ -147,9 +151,10 @@
             max-width: var(--shell);
         }
 
+        .container_offer .container,
         .container_article > .container,
         .container_footer_links > .container{
-            padding-inline: 20px;
+            padding-inline: var(--side);
         }
 
         main{
@@ -176,7 +181,6 @@
             padding: 32px 0;
         }
 
-        /* Кнопки */
         .btn[hidden]{
             display: none;
         }
@@ -254,7 +258,6 @@
             display: flex;
         }
 
-        /* Шапка */
         .container_header{
             left: 0;
             right: 0;
@@ -308,7 +311,119 @@
             padding: 0 10px;
         }
 
-        /* Навигация */
+        .burger{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-left: auto;
+            padding: 0;
+            border: 1px solid var(--gold);
+            border-radius: var(--radius);
+            background: transparent;
+            cursor: pointer;
+            flex: none;
+        }
+
+        .burger_box,
+        .burger_box::before,
+        .burger_box::after{
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 1px;
+            background: var(--gold);
+            position: relative;
+        }
+
+        .burger_box::before,
+        .burger_box::after{
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .burger_box::before{
+            top: -6px;
+        }
+
+        .burger_box::after{
+            top: 6px;
+        }
+
+        .burger.is-open .burger_box{
+            background: transparent;
+        }
+
+        .burger.is-open .burger_box::before{
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .burger.is-open .burger_box::after{
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        .site_menu{
+            display: none;
+        }
+
+        .site_menu.is-open{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: fixed;
+            z-index: 180;
+            top: var(--header-h);
+            left: 0;
+            right: 0;
+            padding: 12px 10px 6px;
+            background: #000;
+            border-bottom: 1px solid var(--gold);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.65);
+        }
+
+        .site_menu.is-open .buttons{
+            width: 100%;
+            flex: none;
+            justify-content: stretch;
+            gap: 8px;
+        }
+
+        .site_menu.is-open .buttons .btn{
+            flex: 1 1 0;
+            font-size: 14px;
+            line-height: 19px;
+            min-height: 44px;
+            padding: 0 10px;
+        }
+
+        .site_menu.is-open .container_nav{
+            position: static;
+            background: transparent;
+        }
+
+        .site_menu.is-open .container_nav_list{
+            flex-direction: column;
+            align-items: stretch;
+            overflow: visible;
+            padding: 0;
+        }
+
+        .site_menu.is-open .container_nav_list > li{
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .site_menu.is-open .container_nav_item{
+            margin: 0;
+            padding: 12px 4px;
+            font-size: 13px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
         .container_nav{
             background: var(--nav-bg);
             color: #e0e0e0;
@@ -317,6 +432,7 @@
             z-index: 100;
             position: fixed;
             width: 100%;
+            min-height: var(--subnav-h);
         }
 
         .container_nav_list{
@@ -369,10 +485,6 @@
         }
 
         @media (min-width: 420px){
-            :root{
-                --subnav-h: 40px;
-            }
-
             .logo img, .logo amp-img{
                 height: 38px;
             }
@@ -401,13 +513,8 @@
             }
         }
 
-        /* Приветственный бонус */
         .container_offer{
             padding: calc(var(--header-h) + var(--subnav-h) + 12px) 0 12px;
-        }
-
-        .container_offer .container{
-            padding-inline: 20px;
         }
 
         .container_offer_box{
@@ -473,7 +580,46 @@
             min-height: 47px;
         }
 
-        /* Приветственный бонус от 640px */
+        @media (max-width: 639px){
+            .container_offer{
+                padding-bottom: 8px;
+            }
+
+            .container_offer_box{
+                padding: 8px 12px;
+            }
+
+            .container_offer_kicker{
+                margin-bottom: 2px;
+                font-size: 11px;
+                letter-spacing: 0.06em;
+            }
+
+            .container_offer_text{
+                margin-bottom: 8px;
+                font-size: 15px;
+                line-height: 1.15;
+            }
+
+            .container_offer_row{
+                gap: 6px;
+            }
+
+            .container_offer_code,
+            .container_offer .btn{
+                min-height: 36px;
+            }
+
+            .container_offer_code{
+                padding-inline: 10px;
+                gap: 6px;
+            }
+
+            .container_offer_code_value{
+                font-size: 16px;
+            }
+        }
+
         @media (min-width: 640px){
             .container_offer_row{
                 flex-direction: row;
@@ -487,7 +633,6 @@
             }
         }
 
-        /* Слайдер акций */
         .container_slider{
             padding-top: 0;
         }
@@ -517,7 +662,6 @@
             min-width: 150px;
         }
 
-        /* Слоты */
         .container_games_inner{
             padding: 32px 10px 0;
 
@@ -536,10 +680,6 @@
             padding: 32px 0;
             font-size: 24px;
             font-weight: 400;
-        }
-
-        #games-title{
-            padding-top: 0;
         }
 
         .container_games_grid{
@@ -616,7 +756,6 @@
 
         }
 
-        /* Модальные окна */
         .games_lightbox{
             height: 100%;
             display: flex;
@@ -676,7 +815,6 @@
             text-align: center;
         }
 
-        /* Победители */
         .container_winners_inner{
             padding: 0 10px;
         }
@@ -729,7 +867,6 @@
             font-size: 20px;
         }
 
-        /* Джекпот */
         .container_jackpot_inner{
             padding: 0 10px;
         }
@@ -795,7 +932,6 @@
 
         }
 
-        /* Как начать играть */
         .container_howto_inner{
             padding: 0 10px;
         }
@@ -843,7 +979,6 @@
             margin-top: auto;
         }
 
-        /* Статья */
         .container_article{
             line-height: 22px;
             color: #fff;
@@ -951,9 +1086,8 @@
             flex: 0 1 1050px;
         }
 
-        /* Бонусные карточки */
         .container_bonuses{
-            padding: 0 10px;
+            padding: 0;
             width: 100%;
             margin: 0 auto 2rem;
             max-width: 1134px;
@@ -969,9 +1103,7 @@
         .container_bonus{
             color: #fff;
             box-sizing: border-box;
-            aspect-ratio: 600 / 645;
-            min-height: 360px;
-            padding: 12px 10px 18px;
+            padding: 12px 10px 14px;
             box-shadow: none;
             border-radius: 0;
             background-color: transparent;
@@ -1085,7 +1217,6 @@
             line-height: 1;
         }
 
-        /* Бонусные карточки от 720px — в один ряд */
         @media (min-width: 720px) {
             .container_bonuses{
                 padding-top: 10px;
@@ -1118,7 +1249,6 @@
             }
         }
 
-        /* Колонки в статье */
         .container_article_split{
             flex-direction: column;
             margin: 0 0 20px;
@@ -1148,7 +1278,6 @@
             margin-bottom: 0;
         }
 
-        /* Колонки в статье от 900px */
         @media (min-width: 900px) {
             .container_article_split{
                 align-items: flex-start;
@@ -1170,7 +1299,6 @@
             }
         }
 
-        /* Цитата */
         .content_note{
             border-radius: 13px;
             border-left: 5px solid var(--gold);
@@ -1188,7 +1316,6 @@
 
         }
 
-        /* Таблица характеристик */
         .wrapper_table{
             margin: 0 0 20px;
             overflow-x: auto;
@@ -1260,7 +1387,6 @@
             background: linear-gradient(180deg, #424242 0%, #333333 100%);
         }
 
-        /* Вопросы и ответы */
         .container_faq{
             display: flex;
             flex-direction: column;
@@ -1305,7 +1431,6 @@
             margin: 0;
         }
 
-        /* Подписка */
         .container_subscribe {
             border-radius:20px;
             color: #000;
@@ -1390,7 +1515,7 @@
             border-radius: 5px;
         }
 
-        .container_subscribe_status{
+        .container_article .container_subscribe_status{
             margin: 0;
             min-height: 23.2px;
             padding: 3px 11px;
@@ -1407,8 +1532,20 @@
             min-height: 23.2px;
             margin-top: 2px;
         }
+        @media (max-width: 899px) {
+            .container_subscribe {
+                padding-bottom: 15px;
+            }
+            .container_subscribe_messages {
+                min-height: 0;
+                margin-top: 0;
+            }
+            .container_subscribe_action {
+                margin-top: 8px;
+                margin-bottom: 0;
+            }
+        }
 
-        /* Содержание */
         .container_toc{
             padding: 20px 0;
         }
@@ -1462,7 +1599,6 @@
 
         }
 
-        /* Подвал */
         .container_footer{
             background: var(--bg);
         }
@@ -1497,9 +1633,6 @@
             letter-spacing: 0;
             align-items: center;
             text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
         }
 
         .container_footer_col a:hover{
@@ -1555,7 +1688,6 @@
         }
 
         .container_footer_providers img, .container_footer_providers amp-img{
-            width: auto ;
             object-fit: contain;
             display: block;
             height: 44px;
@@ -1578,23 +1710,20 @@
             margin: 0;
         }
 
-        .container_footer_rates{
-            font-size: var(--font-size-small);
-            color: #fff;
-        }
-
-        @keyframes modal-in {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-
-        }
-
-        /* Адаптив */
         @media (min-width: 600px) {
+            :root{
+                --subnav-h: 40px;
+            }
+
+            .burger{
+                display: none;
+            }
+
+            .site_menu,
+            .site_menu.is-open{
+                display: contents;
+            }
+
             .content_section{
                 padding: 32px 0;
             }
@@ -1652,6 +1781,7 @@
             :root{
                 --subnav-h: 54px;
                 --header-h: 80px;
+                --side: 34px;
             }
 
             .logo img, .logo amp-img{
@@ -1688,10 +1818,6 @@
 
             .container_games_inner{
                 padding: 32px 24px 0;
-            }
-
-            .container_offer .container{
-                padding-inline: 34px;
             }
 
             .container_games_title,
@@ -1806,11 +1932,6 @@
                 line-height: 36px;
             }
 
-            .container_article > .container,
-            .container_footer_links > .container{
-                padding-inline: 34px;
-            }
-
             .container_bonuses{
                 padding-inline: 0;
             }
@@ -1866,7 +1987,6 @@
             }
         }
 
-        /* AMP-доработки */
         .item_game_play amp-img {
             margin-left: 3px;
         }
@@ -1921,7 +2041,6 @@
             amp-carousel.amp_winners .item_winner { width: 220px; }
         }
 
-        /* Стрелки победителей */
         amp-carousel.amp_winners .amp-carousel-button {
             font-size: 34px;
             font-family: Arial, sans-serif;
@@ -1972,6 +2091,11 @@
             opacity: 0;
             pointer-events: none;
         }
+        @media (max-width: 599px) {
+            amp-carousel.amp_winners .amp-carousel-button {
+                display: none;
+            }
+        }
         @media (min-width: 900px) {
             amp-carousel.amp_winners .amp-carousel-button {
                 height: 70px;
@@ -1984,8 +2108,16 @@
             margin: 0 auto;
             display: block;
             max-height: 96px;
-            max-width: 100%;
-            width: auto;
+            max-width: 97px;
+        }
+        .container_howto_item:nth-child(3) .container_howto_icon amp-img {
+            max-width: 100px;
+        }
+        .container_howto_item:nth-child(4) .container_howto_icon amp-img {
+            max-width: 96px;
+        }
+        .container_howto_item:nth-child(5) .container_howto_icon amp-img {
+            max-width: 70px;
         }
         .container_howto_icon amp-img img {
             max-height: 96px;
@@ -1994,6 +2126,10 @@
         @media (min-width: 900px) {
             .container_howto_icon amp-img,
             .container_howto_icon amp-img img { max-height: 143px; }
+            .container_howto_icon amp-img { max-width: 144px; }
+            .container_howto_item:nth-child(3) .container_howto_icon amp-img { max-width: 149px; }
+            .container_howto_item:nth-child(4) .container_howto_icon amp-img { max-width: 143px; }
+            .container_howto_item:nth-child(5) .container_howto_icon amp-img { max-width: 105px; }
         }
         .container_howto_list { width: 100%; }
         .container_howto_item {
@@ -2102,7 +2238,6 @@
         amp-img.container_bonus_arrow img,
         .container_bonus_arrow img { object-fit: contain; }
 
-        /* Кнопка Play */
         @media (min-width: 900px) {
             .item_game_play {
                 width: 62px;
@@ -2110,32 +2245,12 @@
             }
         }
 
-        /* Слайдер акций AMP */
-        amp-carousel.amp_hero {
-            aspect-ratio: 2 / 1;
-        }
         amp-carousel.amp_hero .item_slide,
         amp-carousel.amp_hero .item_slide_img,
         amp-carousel.amp_hero amp-img {
             height: 100%;
         }
-        @media (min-width: 720px) {
-            amp-carousel.amp_hero {
-                aspect-ratio: 4 / 1;
-            }
-        }
 
-        /* Джекпот AMP */
-        amp-carousel.amp_jackpot {
-            aspect-ratio: 390 / 250;
-        }
-        @media (min-width: 900px) {
-            amp-carousel.amp_jackpot {
-                aspect-ratio: 1690 / 628;
-            }
-        }
-
-        /* Стрелки слайдера AMP */
         amp-carousel.amp_hero .amp-carousel-button,
         amp-carousel.amp_jackpot .amp-carousel-button {
             transform: translateY(-50%);
@@ -2211,7 +2326,6 @@
             }
         }
 
-        /* Длинный текст не раздвигает страницу */
         .buttons{
             min-width: 0;
             flex: 1 1 auto;
@@ -2256,53 +2370,166 @@
             min-width: 0;
             max-width: 100%;
         }
+
+        @media (max-width: 599px) {
+            .container_games_title,
+            .container_winners_title,
+            .container_jackpot_title,
+            .container_howto_heading {
+                padding: 18px 0 10px;
+                font-size: 20px;
+            }
+
+            .wrapper_slider_arrow,
+            amp-carousel.amp_hero .amp-carousel-button {
+                display: none;
+            }
+
+            .container_games_inner {
+                padding-top: 8px;
+            }
+
+            .container_games_more {
+                padding-top: 16px;
+            }
+
+            .content_section {
+                padding: 16px 0;
+            }
+
+            .container_article p {
+                margin-bottom: 1rem;
+            }
+
+            .container_article .container_subscribe_title {
+                margin-bottom: 8px;
+                font-size: 20px;
+            }
+
+            .container_article .container_subscribe_text {
+                margin-bottom: 12px;
+            }
+
+            .container_article .container_faq_a p,
+            .container_article .content_note p,
+            .container_article .container_subscribe_status {
+                margin-bottom: 0;
+            }
+
+            .container_subscribe {
+                margin: 16px 0;
+            }
+
+            .container_bonuses {
+                margin-bottom: 1rem;
+            }
+
+            .content_note {
+                margin-bottom: 16px;
+            }
+
+            .container_article_list li {
+                font-size: inherit;
+                line-height: 1.65;
+                padding-bottom: 6px;
+            }
+
+            .container_jackpot_img {
+                height: 190px;
+            }
+
+            .container_jackpot_label {
+                font-size: 14px;
+            }
+
+            .container_jackpot_sum {
+                font-size: 28px;
+            }
+
+            .container_footer_col a {
+                min-height: 44px;
+                font-size: 14px;
+            }
+
+            .container_article_title,
+            .container_article h2,
+            .container_article h3,
+            .container_article h2#official,
+            .container_article h2#play {
+                margin-bottom: 12px;
+            }
+
+            .container_howto_icon {
+                padding: 12px 0 8px;
+            }
+
+            .container_howto_icon img,
+            .container_howto_icon amp-img,
+            .container_howto_icon amp-img img {
+                max-height: 64px;
+            }
+            .container_howto_icon amp-img { max-width: 64px; }
+            .container_howto_item:nth-child(3) .container_howto_icon amp-img { max-width: 67px; }
+            .container_howto_item:nth-child(4) .container_howto_icon amp-img { max-width: 64px; }
+            .container_howto_item:nth-child(5) .container_howto_icon amp-img { max-width: 47px; }
+
+            .btn {
+                min-height: 40px;
+                font-size: 13px;
+                padding: 0 12px;
+            }
+
+            .container_subscribe_submit {
+                min-height: 40px;
+            }
+        }
     </style>
 </head>
 <body>
-<!-- Шапка -->
 <header class="container_header">
     <div class="container wrapper_content">
         <a class="logo" href="#top" aria-label="Riobet — на главную">
             <amp-img src="../img/logo.svg" width="175" height="56" layout="intrinsic" alt="Riobet"></amp-img>
         </a>
-
-        <div class="buttons">
-            <button class="btn btn_login" type="button" on="tap:login-modal">Вход</button>
-            <button class="btn btn_gold" type="button" on="tap:signup-modal">Регистрация</button>
+        <button class="burger" type="button" [class]="menuOpen ? 'burger is-open' : 'burger'" on="tap:AMP.setState({menuOpen: !menuOpen})" aria-label="Меню">
+            <span class="burger_box" aria-hidden="true"></span>
+        </button>
+        <div class="site_menu" id="site-menu" [class]="menuOpen ? 'site_menu is-open' : 'site_menu'">
+            <div class="buttons">
+                <button class="btn btn_login" type="button" on="tap:login-modal,AMP.setState({menuOpen: false})">Вход</button>
+                <button class="btn btn_gold" type="button" on="tap:signup-modal,AMP.setState({menuOpen: false})">Регистрация</button>
+            </div>
+            <nav class="container_nav" aria-label="Разделы казино">
+                <ul class="container container_nav_list">
+                    <li>
+                        <a class="container_nav_item" href="https://riobet.com/pt-br/" on="tap:AMP.setState({menuOpen: false})">
+                        <span class="container_nav_ico" aria-hidden="true">
+                          <amp-img src="../img/icons/nav-official.svg" layout="fill" alt=""></amp-img>
+                        </span>
+                            Официальный сайт
+                        </a>
+                    </li>
+                    <li>
+                        <a class="container_nav_item" href="#review" on="tap:AMP.setState({menuOpen: false})">
+                        <span class="container_nav_ico" aria-hidden="true">
+                          <amp-img src="../img/icons/nav-money.svg" layout="fill" alt=""></amp-img>
+                        </span>
+                            Игра на деньги
+                        </a>
+                    </li>
+                    <li>
+                        <a class="container_nav_item" href="#bonuses-promo" on="tap:AMP.setState({menuOpen: false})">
+                        <span class="container_nav_ico" aria-hidden="true">
+                          <amp-img src="../img/icons/nav-bonus.svg" layout="fill" alt=""></amp-img>
+                        </span>
+                            Бонусы
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </header>
-<!-- /Шапка -->
-
-<!-- Навигация -->
-<nav class="container_nav" aria-label="Разделы казино">
-    <ul class="container container_nav_list">
-        <li>
-            <a class="container_nav_item" href="https://riobet.com/pt-br/">
-            <span class="container_nav_ico" aria-hidden="true">
-              <amp-img src="../img/icons/nav-official.svg" layout="fill" alt=""></amp-img>
-            </span>
-                Официальный сайт
-            </a>
-        </li>
-        <li>
-            <a class="container_nav_item" href="#review">
-            <span class="container_nav_ico" aria-hidden="true">
-              <amp-img src="../img/icons/nav-money.svg" layout="fill" alt=""></amp-img>
-            </span>
-                Игра на деньги
-            </a>
-        </li>
-        <li>
-            <a class="container_nav_item" href="#bonuses-promo">
-            <span class="container_nav_ico" aria-hidden="true">
-              <amp-img src="../img/icons/nav-bonus.svg" layout="fill" alt=""></amp-img>
-            </span>
-                Бонусы
-            </a>
-        </li>
-    </ul>
-</nav>
 
 <main>
     <section class="container_offer" id="top" aria-label="Приветственный бонус">
@@ -2323,7 +2550,7 @@
     <section class="container_slider" aria-label="Акции казино">
         <div class="container">
             <div class="content_panel">
-                <amp-carousel class="amp_hero" width="2" height="1" layout="responsive" type="slides" autoplay delay="6000" role="region" aria-label="Акции">
+                <amp-carousel class="amp_hero" width="2" height="1" layout="responsive" heights="(min-width:720px) 25%, 50%" type="slides" autoplay delay="6000" role="region" aria-label="Акции">
                     <div class="item_slide">
                         <amp-img class="item_slide_img" src="../img/banner-live.webp" srcset="../img/banner-live-960.webp 960w, ../img/banner-live.webp 1440w" sizes="100vw" width="2" height="1" layout="responsive" alt="Играй в прямом эфире — live-казино Riobet с реальными дилерами"></amp-img>
                         <span class="item_slide_cta"><button class="btn btn_green" type="button" on="tap:play-modal">Играть</button></span>
@@ -2411,9 +2638,7 @@
             </div>
         </div>
     </section>
-    <!-- /Слоты -->
 
-    <!-- Победители -->
     <section aria-labelledby="winners-title">
         <div class="container">
             <div class="container_winners_inner">
@@ -2571,7 +2796,7 @@
             <div class="container_jackpot_inner">
                 <h2 class="container_jackpot_title" id="jackpot-title">Джекпоты</h2>
                 <div class="content_panel">
-                    <amp-carousel class="amp_jackpot" width="390" height="250" layout="responsive" type="slides" autoplay delay="6000" role="region" aria-label="Джекпоты">
+                    <amp-carousel class="amp_jackpot" width="1690" height="628" layout="responsive" heights="(min-width:900px) 37.16%, (min-width:600px) 250px, 190px" type="slides" autoplay delay="6000" role="region" aria-label="Джекпоты">
                         <div class="item_slide container_jackpot_slide">
                             <amp-img class="container_jackpot_img" src="../img/jackpot/ozwins.webp" srcset="../img/jackpot/ozwins-960.webp 960w, ../img/jackpot/ozwins.webp 1760w" sizes="100vw" width="390" height="250" layout="fill" alt="Джекпот в игре Ozwin’s Jackpots"></amp-img>
                             <p class="container_jackpot_label">Сумма джекпота сейчас</p>
@@ -2595,9 +2820,7 @@
             </div>
         </div>
     </section>
-    <!-- /Джекпот -->
 
-    <!-- Live Casino -->
     <span id="live" class="scroll-target"></span>
     <section class="container_games_live" aria-labelledby="live-title">
         <div class="container">
@@ -2730,7 +2953,7 @@
                 <ol class="container_howto_list">
                     <li class="container_howto_item">
                         <div class="container_howto_icon">
-                            <amp-img src="../img/icons/clock.svg" width="96" height="95" layout="fixed" alt=""></amp-img>
+                            <amp-img src="../img/icons/clock.svg" width="145" height="143" layout="intrinsic" alt=""></amp-img>
                         </div>
                         <p class="container_howto_text">Зарегистрируйтесь за 15 секунд</p>
                         <div class="container_howto_cta">
@@ -2739,7 +2962,7 @@
                     </li>
                     <li class="container_howto_item">
                         <div class="container_howto_icon">
-                            <amp-img src="../img/icons/gift-color.svg" width="96" height="95" layout="fixed" alt=""></amp-img>
+                            <amp-img src="../img/icons/gift-color.svg" width="145" height="143" layout="intrinsic" alt=""></amp-img>
                         </div>
                         <p class="container_howto_text">Получите фриспины</p>
                         <div class="container_howto_cta">
@@ -2748,7 +2971,7 @@
                     </li>
                     <li class="container_howto_item">
                         <div class="container_howto_icon">
-                            <amp-img src="../img/icons/money.svg" width="96" height="92" layout="fixed" alt=""></amp-img>
+                            <amp-img src="../img/icons/money.svg" width="149" height="143" layout="intrinsic" alt=""></amp-img>
                         </div>
                         <p class="container_howto_text">Сделайте депозит</p>
                         <div class="container_howto_cta">
@@ -2757,7 +2980,7 @@
                     </li>
                     <li class="container_howto_item">
                         <div class="container_howto_icon">
-                            <amp-img src="../img/icons/slots.svg" width="96" height="96" layout="fixed" alt=""></amp-img>
+                            <amp-img src="../img/icons/slots.svg" width="143" height="143" layout="intrinsic" alt=""></amp-img>
                         </div>
                         <p class="container_howto_text">Играйте и выигрывайте</p>
                         <div class="container_howto_cta">
@@ -2766,7 +2989,7 @@
                     </li>
                     <li class="container_howto_item">
                         <div class="container_howto_icon">
-                            <amp-img src="../img/icons/card.svg" width="70" height="96" layout="fixed" alt=""></amp-img>
+                            <amp-img src="../img/icons/card.svg" width="104" height="143" layout="intrinsic" alt=""></amp-img>
                         </div>
                         <p class="container_howto_text">Выводите за 15 минут</p>
                         <div class="container_howto_cta">
@@ -3130,50 +3353,50 @@
         </ul>
 
         <ul class="container_footer_providers" aria-label="Провайдеры">
-            <li><amp-img src="../img/partners/netent-partner.webp" width="114" height="44" layout="responsive" alt="NetEnt"></amp-img></li>
-            <li><amp-img src="../img/partners/amatic.webp" width="158" height="48" layout="responsive" alt="Amatic"></amp-img></li>
-            <li><amp-img src="../img/partners/microgaming.webp" width="180" height="40" layout="responsive" alt="Microgaming"></amp-img></li>
-            <li><amp-img src="../img/partners/betsoft.webp" width="140" height="40" layout="responsive" alt="Betsoft"></amp-img></li>
-            <li><amp-img src="../img/partners/evolution-gaming.webp" width="160" height="40" layout="responsive" alt="Evolution Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/ainsworth.webp" width="140" height="40" layout="responsive" alt="Ainsworth"></amp-img></li>
-            <li><amp-img src="../img/partners/habanero.webp" width="140" height="40" layout="responsive" alt="Habanero"></amp-img></li>
-            <li><amp-img src="../img/partners/isoftbet.webp" width="140" height="40" layout="responsive" alt="iSoftBet"></amp-img></li>
-            <li><amp-img src="../img/partners/gameart.webp" width="140" height="40" layout="responsive" alt="GameArt"></amp-img></li>
-            <li><amp-img src="../img/partners/evoplay.webp" width="140" height="40" layout="responsive" alt="Evoplay"></amp-img></li>
-            <li><amp-img src="../img/partners/yggdrasilgaming.webp" width="140" height="40" layout="responsive" alt="Yggdrasil"></amp-img></li>
-            <li><amp-img src="../img/partners/endorphina.webp" width="140" height="40" layout="responsive" alt="Endorphina"></amp-img></li>
-            <li><amp-img src="../img/partners/ezugi.webp" width="120" height="40" layout="responsive" alt="Ezugi"></amp-img></li>
-            <li><amp-img src="../img/partners/playson.webp" width="140" height="40" layout="responsive" alt="Playson"></amp-img></li>
-            <li><amp-img src="../img/partners/lucky_streak.webp" width="140" height="40" layout="responsive" alt="Lucky Streak"></amp-img></li>
-            <li><amp-img src="../img/partners/pragmaticplay.webp" width="232" height="100" layout="responsive" alt="Pragmatic Play"></amp-img></li>
-            <li><amp-img src="../img/partners/quickspin.webp" width="140" height="40" layout="responsive" alt="Quickspin"></amp-img></li>
-            <li><amp-img src="../img/partners/egt.webp" width="100" height="40" layout="responsive" alt="EGT"></amp-img></li>
-            <li><amp-img src="../img/partners/tomhorn.webp" width="140" height="40" layout="responsive" alt="Tom Horn"></amp-img></li>
-            <li><amp-img src="../img/partners/playngo.webp" width="140" height="40" layout="responsive" alt="Play'n GO"></amp-img></li>
-            <li><amp-img src="../img/partners/redtiger.webp" width="140" height="40" layout="responsive" alt="Red Tiger"></amp-img></li>
-            <li><amp-img src="../img/partners/Apollo.webp" width="140" height="40" layout="responsive" alt="Apollo Games"></amp-img></li>
-            <li><amp-img src="../img/partners/Authentic-Gaming.webp" width="140" height="40" layout="responsive" alt="Authentic Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/Big-Time-Gaming.webp" width="140" height="40" layout="responsive" alt="Big Time Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/Blueprint.webp" width="140" height="40" layout="responsive" alt="Blueprint Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/Booming-Games.webp" width="140" height="40" layout="responsive" alt="Booming Games"></amp-img></li>
-            <li><amp-img src="../img/partners/Booongo.webp" width="140" height="40" layout="responsive" alt="Booongo"></amp-img></li>
-            <li><amp-img src="../img/partners/Edict.webp" width="140" height="40" layout="responsive" alt="Edict"></amp-img></li>
-            <li><amp-img src="../img/partners/ELK-Studios.webp" width="140" height="40" layout="responsive" alt="ELK Studios"></amp-img></li>
-            <li><amp-img src="../img/partners/High-5-Games.webp" width="140" height="40" layout="responsive" alt="High 5 Games"></amp-img></li>
-            <li><amp-img src="../img/partners/MRSlotty.webp" width="140" height="40" layout="responsive" alt="MrSlotty"></amp-img></li>
-            <li><amp-img src="../img/partners/Nolimit-City.webp" width="140" height="40" layout="responsive" alt="Nolimit City"></amp-img></li>
-            <li><amp-img src="../img/partners/OneXTwoNetwork.webp" width="140" height="40" layout="responsive" alt="OneXTwo"></amp-img></li>
-            <li><amp-img src="../img/partners/Patagonia.webp" width="140" height="40" layout="responsive" alt="Patagonia"></amp-img></li>
-            <li><amp-img src="../img/partners/PGSoft.webp" width="140" height="40" layout="responsive" alt="PG Soft"></amp-img></li>
-            <li><amp-img src="../img/partners/Platipus.webp" width="140" height="40" layout="responsive" alt="Platipus"></amp-img></li>
-            <li><amp-img src="../img/partners/Playtech.webp" width="140" height="40" layout="responsive" alt="Playtech"></amp-img></li>
-            <li><amp-img src="../img/partners/PushGaming.webp" width="140" height="40" layout="responsive" alt="Push Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/Relax-Gaming.webp" width="140" height="40" layout="responsive" alt="Relax Gaming"></amp-img></li>
-            <li><amp-img src="../img/partners/Spinomenal.webp" width="140" height="40" layout="responsive" alt="Spinomenal"></amp-img></li>
-            <li><amp-img src="../img/partners/Stakelogic.webp" width="140" height="40" layout="responsive" alt="Stakelogic"></amp-img></li>
-            <li><amp-img src="../img/partners/Thunderkick.webp" width="140" height="40" layout="responsive" alt="Thunderkick"></amp-img></li>
-            <li><amp-img src="../img/partners/WACS.webp" width="140" height="40" layout="responsive" alt="We Are Casino"></amp-img></li>
-            <li><amp-img src="../img/partners/Wazdan.webp" width="165" height="65" layout="responsive" alt="Wazdan"></amp-img></li>
+            <li><amp-img src="../img/partners/netent-partner.webp" width="114" height="44" layout="fixed" alt="NetEnt"></amp-img></li>
+            <li><amp-img src="../img/partners/amatic.webp" width="145" height="44" layout="fixed" alt="Amatic"></amp-img></li>
+            <li><amp-img src="../img/partners/microgaming.webp" width="160" height="44" layout="fixed" alt="Microgaming"></amp-img></li>
+            <li><amp-img src="../img/partners/betsoft.webp" width="154" height="44" layout="fixed" alt="Betsoft"></amp-img></li>
+            <li><amp-img src="../img/partners/evolution-gaming.webp" width="160" height="44" layout="fixed" alt="Evolution Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/ainsworth.webp" width="154" height="44" layout="fixed" alt="Ainsworth"></amp-img></li>
+            <li><amp-img src="../img/partners/habanero.webp" width="154" height="44" layout="fixed" alt="Habanero"></amp-img></li>
+            <li><amp-img src="../img/partners/isoftbet.webp" width="154" height="44" layout="fixed" alt="iSoftBet"></amp-img></li>
+            <li><amp-img src="../img/partners/gameart.webp" width="154" height="44" layout="fixed" alt="GameArt"></amp-img></li>
+            <li><amp-img src="../img/partners/evoplay.webp" width="154" height="44" layout="fixed" alt="Evoplay"></amp-img></li>
+            <li><amp-img src="../img/partners/yggdrasilgaming.webp" width="154" height="44" layout="fixed" alt="Yggdrasil"></amp-img></li>
+            <li><amp-img src="../img/partners/endorphina.webp" width="154" height="44" layout="fixed" alt="Endorphina"></amp-img></li>
+            <li><amp-img src="../img/partners/ezugi.webp" width="132" height="44" layout="fixed" alt="Ezugi"></amp-img></li>
+            <li><amp-img src="../img/partners/playson.webp" width="154" height="44" layout="fixed" alt="Playson"></amp-img></li>
+            <li><amp-img src="../img/partners/lucky_streak.webp" width="154" height="44" layout="fixed" alt="Lucky Streak"></amp-img></li>
+            <li><amp-img src="../img/partners/pragmaticplay.webp" width="102" height="44" layout="fixed" alt="Pragmatic Play"></amp-img></li>
+            <li><amp-img src="../img/partners/quickspin.webp" width="154" height="44" layout="fixed" alt="Quickspin"></amp-img></li>
+            <li><amp-img src="../img/partners/egt.webp" width="110" height="44" layout="fixed" alt="EGT"></amp-img></li>
+            <li><amp-img src="../img/partners/tomhorn.webp" width="154" height="44" layout="fixed" alt="Tom Horn"></amp-img></li>
+            <li><amp-img src="../img/partners/playngo.webp" width="154" height="44" layout="fixed" alt="Play'n GO"></amp-img></li>
+            <li><amp-img src="../img/partners/redtiger.webp" width="154" height="44" layout="fixed" alt="Red Tiger"></amp-img></li>
+            <li><amp-img src="../img/partners/Apollo.webp" width="154" height="44" layout="fixed" alt="Apollo Games"></amp-img></li>
+            <li><amp-img src="../img/partners/Authentic-Gaming.webp" width="154" height="44" layout="fixed" alt="Authentic Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/Big-Time-Gaming.webp" width="154" height="44" layout="fixed" alt="Big Time Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/Blueprint.webp" width="154" height="44" layout="fixed" alt="Blueprint Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/Booming-Games.webp" width="154" height="44" layout="fixed" alt="Booming Games"></amp-img></li>
+            <li><amp-img src="../img/partners/Booongo.webp" width="154" height="44" layout="fixed" alt="Booongo"></amp-img></li>
+            <li><amp-img src="../img/partners/Edict.webp" width="154" height="44" layout="fixed" alt="Edict"></amp-img></li>
+            <li><amp-img src="../img/partners/ELK-Studios.webp" width="154" height="44" layout="fixed" alt="ELK Studios"></amp-img></li>
+            <li><amp-img src="../img/partners/High-5-Games.webp" width="154" height="44" layout="fixed" alt="High 5 Games"></amp-img></li>
+            <li><amp-img src="../img/partners/MRSlotty.webp" width="154" height="44" layout="fixed" alt="MrSlotty"></amp-img></li>
+            <li><amp-img src="../img/partners/Nolimit-City.webp" width="154" height="44" layout="fixed" alt="Nolimit City"></amp-img></li>
+            <li><amp-img src="../img/partners/OneXTwoNetwork.webp" width="154" height="44" layout="fixed" alt="OneXTwo"></amp-img></li>
+            <li><amp-img src="../img/partners/Patagonia.webp" width="154" height="44" layout="fixed" alt="Patagonia"></amp-img></li>
+            <li><amp-img src="../img/partners/PGSoft.webp" width="154" height="44" layout="fixed" alt="PG Soft"></amp-img></li>
+            <li><amp-img src="../img/partners/Platipus.webp" width="154" height="44" layout="fixed" alt="Platipus"></amp-img></li>
+            <li><amp-img src="../img/partners/Playtech.webp" width="154" height="44" layout="fixed" alt="Playtech"></amp-img></li>
+            <li><amp-img src="../img/partners/PushGaming.webp" width="154" height="44" layout="fixed" alt="Push Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/Relax-Gaming.webp" width="154" height="44" layout="fixed" alt="Relax Gaming"></amp-img></li>
+            <li><amp-img src="../img/partners/Spinomenal.webp" width="154" height="44" layout="fixed" alt="Spinomenal"></amp-img></li>
+            <li><amp-img src="../img/partners/Stakelogic.webp" width="154" height="44" layout="fixed" alt="Stakelogic"></amp-img></li>
+            <li><amp-img src="../img/partners/Thunderkick.webp" width="154" height="44" layout="fixed" alt="Thunderkick"></amp-img></li>
+            <li><amp-img src="../img/partners/WACS.webp" width="154" height="44" layout="fixed" alt="We Are Casino"></amp-img></li>
+            <li><amp-img src="../img/partners/Wazdan.webp" width="112" height="44" layout="fixed" alt="Wazdan"></amp-img></li>
         </ul>
 
         <div class="container_footer_legal">
@@ -3188,7 +3411,6 @@
     </div>
 </footer>
 
-<!-- Модальные окна -->
 <amp-lightbox id="login-modal" layout="nodisplay">
     <div class="games_lightbox">
         <div class="games_lightbox_window" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
@@ -3254,7 +3476,6 @@
         </div>
     </div>
 </amp-lightbox>
-<!-- /Модальные окна -->
 
 </body>
 </html>
